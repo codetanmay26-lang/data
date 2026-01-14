@@ -23,3 +23,4 @@ def district_overview(
     state: str = Query(..., description="Exact state name as in dataset")
 ):
     return aggregate_district(state)
+
