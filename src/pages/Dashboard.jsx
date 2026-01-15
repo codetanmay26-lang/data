@@ -1,93 +1,81 @@
+// src/pages/Dashboard.jsx - PERFECT WIDTH FIX
+import React, { useState } from "react";
+import NationalDashboard from "./NationalDashboard";
+import StateDashboard from "./StateDashboard";
+import DistrictDashboard from "./DistrictDashboard";
+
 export default function Dashboard() {
-  return (
-    <div className="page">
-      <h2 style={{ marginBottom: "8px" }}>National Dashboard</h2>
-      <p style={{ color: "#475569", marginBottom: "24px" }}>
-        Overview of Aadhaar enrolment and update activity across India
-      </p>
+  const [view, setView] = useState("national");
 
-      {/* KPI Cards */}
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
-          gap: "20px",
-        }}
-      >
-        <Card title="Total Enrolments" value="132 Cr+" />
-        <Card title="Biometric Updates" value="28 Cr+" />
-        <Card title="Demographic Updates" value="41 Cr+" />
+  return (
+    <div style={{
+      width: "100vw",                    // ✅ Full viewport width
+      height: "100vh",                   // ✅ Full viewport height
+      margin: 0,                         // ✅ No margins
+      padding: 0,                        // ✅ No padding on root
+      position: "relative",
+      overflow: "hidden",                // ✅ No scrollbars EVER
+      boxSizing: "border-box"
+    }}>
+      {/* Sidebar offset - perfect fit */}
+      <div style={{
+        marginLeft: "260px",             // Sidebar width
+        marginTop: "92px",               // Header height  
+        width: "calc(100vw - 260px)",    // ✅ PERFECT: viewport - sidebar
+        height: "calc(100vh - 92px)",    // ✅ PERFECT: viewport - header
+        padding: "24px 20px",            // ✅ Reduced padding
+        overflow: "auto",                // ✅ Internal scroll only if needed
+        boxSizing: "border-box"
+      }}>
+        {/* Tabs */}
+        <div style={{ 
+          display: "flex", 
+          gap: 12, 
+          marginBottom: 28,
+          flexWrap: "wrap",
+          width: "100%"
+        }}>
+          {["national", "state", "district"].map((t) => (
+            <button
+              key={t}
+              onClick={() => setView(t)}
+              style={view === t ? activeTab : tab}
+            >
+              {t.toUpperCase()}
+            </button>
+          ))}
+        </div>
+
+        {/* Content - perfect fit */}
+        <div style={{ width: "100%", minHeight: "100%" }}>
+          {view === "national" && <NationalDashboard />}
+          {view === "state" && <StateDashboard />}
+          {view === "district" && <DistrictDashboard />}
+        </div>
       </div>
-
-      {/* Insights */}
-      <section className="card section">
-        <h3 className="section-title">Insights</h3>
-        <p style={{ color: "#64748b" }}>
-          Charts and analytics will be displayed here.
-        </p>
-      </section>
-
-      {/* State-wise Section */}
-      <section className="card section">
-        <h3 className="section-title">State-wise Aadhaar Activity</h3>
-
-        <table className="table">
-          <thead>
-            <tr>
-              <th>State</th>
-              <th>Enrolments</th>
-              <th>Biometric Updates</th>
-              <th>Demographic Updates</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <tr>
-              <td>Uttar Pradesh</td>
-              <td>18 Cr+</td>
-              <td>4.2 Cr+</td>
-              <td>5.1 Cr+</td>
-            </tr>
-            <tr>
-              <td>Maharashtra</td>
-              <td>11 Cr+</td>
-              <td>3.1 Cr+</td>
-              <td>3.8 Cr+</td>
-            </tr>
-            <tr>
-              <td>Tamil Nadu</td>
-              <td>7.6 Cr+</td>
-              <td>2.4 Cr+</td>
-              <td>2.9 Cr+</td>
-            </tr>
-            <tr>
-              <td>Karnataka</td>
-              <td>6.8 Cr+</td>
-              <td>2.1 Cr+</td>
-              <td>2.6 Cr+</td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
     </div>
   );
 }
 
-function Card({ title, value }) {
-  return (
-    <div className="card">
-      <p style={{ color: "#64748b", marginBottom: "8px" }}>{title}</p>
-      <h2
-  style={{
-    margin: 0,
-    fontSize: "28px",
-    color: "#0f172a" ,
-    letterSpacing: "-0.5px",
-  }}
->
-  {value}
-</h2>
+// Styles unchanged
+const tab = {
+  padding: "12px 20px",
+  border: "1px solid #d1d5db",
+  background: "#fff",
+  cursor: "pointer",
+  borderRadius: "8px",
+  fontWeight: 600,
+  fontSize: 14,
+  color: "#374151",
+  transition: "all 0.2s",
+  whiteSpace: "nowrap",
+  flexShrink: 0
+};
 
-    </div>
-  );
-}
+const activeTab = {
+  ...tab,
+  background: "#111827",
+  color: "#fff",
+  boxShadow: "0 4px 12px rgba(17,24,39,0.3)",
+  borderColor: "#111827"
+};

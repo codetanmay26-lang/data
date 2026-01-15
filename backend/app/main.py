@@ -3,11 +3,20 @@ from fastapi import FastAPI
 from app.routers import data_inspect
 from app.routers import aggregations
 from app.routers import stations  # <-- stations router import
+from fastapi.middleware.cors import CORSMiddleware
 
+ 
 app = FastAPI(
     title="Aadhaar Pulse API",
     description="UIDAI dataset inspection and analytics API",
     version="0.1.0"
+)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # Register routers
