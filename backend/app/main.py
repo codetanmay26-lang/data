@@ -6,7 +6,8 @@ from app.routers import stations  # <-- stations router import
 from fastapi.middleware.cors import CORSMiddleware
 from app.routers import data_cleaning
 from app.routers import district_anomalies
- 
+from app.routers import insights
+
 app = FastAPI(
     title="Aadhaar Pulse API",
     description="UIDAI dataset inspection and analytics API",
@@ -26,6 +27,7 @@ app.include_router(aggregations.router)
 app.include_router(stations.router)
 app.include_router(data_cleaning.router)
 app.include_router(district_anomalies.router)
+app.include_router(insights.router)
 
 @app.get("/")
 def root():

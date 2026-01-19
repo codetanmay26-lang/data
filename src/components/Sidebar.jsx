@@ -1,4 +1,4 @@
-// Sidebar.jsx — FINAL (aligned icon rail, zero reloads, stable hover)
+// Sidebar.jsx — FINAL + INSIGHTS NAV (NO RELOADS, PERFECT HOVER)
 import { useState, useCallback } from "react";
 import { NavLink } from "react-router-dom";
 import {
@@ -6,14 +6,15 @@ import {
   LayoutDashboard,
   Map,
   TrendingUp,
-  Filter,
   Activity,
+  Filter,
+  BarChart3, // 👈 INSIGHTS ICON
 } from "lucide-react";
 
 export default function Sidebar({ setSidebarWidth }) {
   const [isExpanded, setIsExpanded] = useState(false);
 
-  // Stable handlers (no re-render storms)
+  // ✅ STABLE HANDLERS - ZERO RE-RENDERS ON HOVER
   const handleExpand = useCallback(() => {
     setIsExpanded(true);
     setSidebarWidth(260);
@@ -27,8 +28,9 @@ export default function Sidebar({ setSidebarWidth }) {
   const navConfig = [
     { to: "/", label: "Home", Icon: Home },
     { to: "/dashboard", label: "Dashboard", Icon: LayoutDashboard },
-    { to: "/map", label: "Map View", Icon: Map },
+    { to: "/map", label: "Data Visualisation", Icon: Map },
     { to: "/demand", label: "Demand Analysis", Icon: TrendingUp },
+    { to: "/insights", label: "National Insights", Icon: BarChart3 }, // 👈 NEW ENTRY
     { to: "/migration", label: "Migration Index", Icon: Activity },
     { to: "/data-cleaning", label: "Data Cleaning", Icon: Filter },
   ];
@@ -55,7 +57,7 @@ export default function Sidebar({ setSidebarWidth }) {
         padding: "12px",
       }}
     >
-      {/* LOGO ROW — MATCHES NAV GEOMETRY */}
+      {/* LOGO ROW */}
       <div
         style={{
           height: "44px",
@@ -65,18 +67,16 @@ export default function Sidebar({ setSidebarWidth }) {
           marginBottom: "8px",
         }}
       >
-        {/* ICON RAIL (same as nav icons) */}
         <div
-  style={{
-    width: "20px",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    flexShrink: 0,
-    transform: "translateX(3px)", // 👈 OPTICAL ALIGNMENT FIX
-  }}
->
-
+          style={{
+            width: "20px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            flexShrink: 0,
+            transform: "translateX(3px)",
+          }}
+        >
           <svg
             width="18"
             height="18"
@@ -98,7 +98,6 @@ export default function Sidebar({ setSidebarWidth }) {
           </svg>
         </div>
 
-        {/* BRAND TEXT */}
         {isExpanded && (
           <div
             style={{
@@ -168,7 +167,6 @@ export default function Sidebar({ setSidebarWidth }) {
               cursor: "pointer",
             })}
           >
-            {/* ICON RAIL — IDENTICAL TO LOGO */}
             <div
               style={{
                 width: "20px",
@@ -182,7 +180,6 @@ export default function Sidebar({ setSidebarWidth }) {
               <Icon size={18} strokeWidth={2.5} />
             </div>
 
-            {/* LABEL */}
             <span
               style={{
                 marginLeft: isExpanded ? "12px" : "0",

@@ -21,7 +21,7 @@ from schemas import (
     TrendDataPoint
 )
 from forecasting import MigrationForecaster
-from app.routers import data_inspect, aggregations, stations, data_cleaning, district_anomalies
+from app.routers import data_inspect, aggregations, stations, data_cleaning, district_anomalies,insights
 import config
 
 # Initialize FastAPI app
@@ -49,7 +49,7 @@ app.include_router(aggregations.router)
 app.include_router(stations.router)
 app.include_router(data_cleaning.router)
 app.include_router(district_anomalies.router)
-
+app.include_router(insights.router)
 # Initialize database on startup
 @app.on_event("startup")
 async def startup_event():

@@ -1,4 +1,4 @@
-// FIXED App.jsx - NO RELOAD ON HOVER
+// FIXED App.jsx - NO RELOAD ON HOVER, RESPONSIVE GRID
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { useState, useEffect, useCallback } from "react";
 
@@ -11,6 +11,7 @@ import Map from "./pages/Map";
 import DemandAnalysis from "./pages/DemandAnalysis";
 import DataCleaning from "./pages/data-cleaning/DataCleaning";
 import MigrationAnalysis from "./pages/MigrationAnalysis";
+import NationalInsights from "./pages/NationalInsights"; // 👈 NEW INSIGHTS PAGE
 
 function Layout() {
   const [sidebarWidth, setSidebarWidth] = useState(84);
@@ -21,9 +22,16 @@ function Layout() {
     setSidebarWidth(width);
   }, []);
 
-  // ✅ ONLY RUN ONCE - NO RELOAD TRIGGER
+  // ✅ RESPONSIVE SIDEBAR - MOBILE COLLAPSE
   useEffect(() => {
-    // Remove resize event - it was causing reloads
+    const handleResize = () => {
+      if (window.innerWidth < 1024) {
+        setSidebarWidth(84);
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    handleResize();
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   return (
@@ -46,7 +54,6 @@ function Layout() {
           marginLeft: `${sidebarWidth}px`,
           display: "flex",
           flexDirection: "column",
-          // ✅ SMOOTH TRANSITION WITHOUT RELOAD
           transition: "margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
         }}
       >
@@ -71,6 +78,7 @@ function Layout() {
             <Route path="/demand" element={<DemandAnalysis />} />
             <Route path="/migration" element={<MigrationAnalysis />} />
             <Route path="/data-cleaning" element={<DataCleaning />} />
+            <Route path="/insights" element={<NationalInsights />} /> {/* 👈 NEW ROUTE */}
           </Routes>
         </main>
       </div>
