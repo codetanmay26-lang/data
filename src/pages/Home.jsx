@@ -60,7 +60,7 @@ export default function Home() {
         {/* NATIONAL OVERVIEW */}
         <a href="/dashboard" style={{
           textDecoration: 'none',
-          display: 'block',
+          display: 'flex',
           padding: '24px',
           background: '#ffffff',
           border: '1px solid #e2e8f0',
@@ -68,7 +68,6 @@ export default function Home() {
           boxShadow: '0 1px 2px rgba(0,0,0,0.06)',
           transition: 'all 0.15s ease',
           height: '160px',
-          display: 'flex',
           flexDirection: 'column'
         }}
         onMouseEnter={(e) => {
@@ -134,7 +133,7 @@ export default function Home() {
         {/* STATE ANALYSIS */}
         <a href="/map" style={{
           textDecoration: 'none',
-          display: 'block',
+          display: 'flex',
           padding: '24px',
           background: '#ffffff',
           border: '1px solid #e2e8f0',
@@ -142,7 +141,6 @@ export default function Home() {
           boxShadow: '0 1px 2px rgba(0,0,0,0.06)',
           transition: 'all 0.15s ease',
           height: '160px',
-          display: 'flex',
           flexDirection: 'column'
         }}
         onMouseEnter={(e) => {
@@ -208,7 +206,7 @@ export default function Home() {
         {/* GEOGRAPHIC VIEW */}
         <a href="/demand" style={{
           textDecoration: 'none',
-          display: 'block',
+          display: 'flex',
           padding: '24px',
           background: '#ffffff',
           border: '1px solid #e2e8f0',
@@ -216,7 +214,6 @@ export default function Home() {
           boxShadow: '0 1px 2px rgba(0,0,0,0.06)',
           transition: 'all 0.15s ease',
           height: '160px',
-          display: 'flex',
           flexDirection: 'column'
         }}
         onMouseEnter={(e) => {

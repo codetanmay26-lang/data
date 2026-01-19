@@ -8,7 +8,6 @@ import {
   TrendingUp,
   Filter,
   Activity,
-  BarChart3,
 } from "lucide-react";
 
 export default function Sidebar({ setSidebarWidth }) {
@@ -31,7 +30,6 @@ export default function Sidebar({ setSidebarWidth }) {
     { to: "/map", label: "Map View", Icon: Map },
     { to: "/demand", label: "Demand Analysis", Icon: TrendingUp },
     { to: "/migration", label: "Migration Index", Icon: Activity },
-    { to: "/migration-forecast", label: "Forecast", Icon: BarChart3 },
     { to: "/data-cleaning", label: "Data Cleaning", Icon: Filter },
   ];
 

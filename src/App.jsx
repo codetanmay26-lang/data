@@ -11,7 +11,6 @@ import Map from "./pages/Map";
 import DemandAnalysis from "./pages/DemandAnalysis";
 import DataCleaning from "./pages/data-cleaning/DataCleaning";
 import MigrationAnalysis from "./pages/MigrationAnalysis";
-import MigrationForecast from "./pages/MigrationForecast";
 
 function Layout() {
   const [sidebarWidth, setSidebarWidth] = useState(84);
@@ -71,7 +70,6 @@ function Layout() {
             <Route path="/map" element={<Map />} />
             <Route path="/demand" element={<DemandAnalysis />} />
             <Route path="/migration" element={<MigrationAnalysis />} />
-            <Route path="/migration-forecast" element={<MigrationForecast />} />
             <Route path="/data-cleaning" element={<DataCleaning />} />
           </Routes>
         </main>
