@@ -1,0 +1,21 @@
+<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background gradient circle -->
+  <circle cx="100" cy="100" r="95" fill="#1e293b" stroke="#6366f1" stroke-width="2"/>
+  
+  <!-- Pulse waves -->
+  <circle cx="100" cy="100" r="40" fill="none" stroke="#6366f1" stroke-width="2" opacity="0.6"/>
+  <circle cx="100" cy="100" r="60" fill="none" stroke="#6366f1" stroke-width="1.5" opacity="0.3"/>
+  
+  <!-- Center pulse point -->
+  <circle cx="100" cy="100" r="8" fill="#6366f1"/>
+  
+  <!-- Pulse heartbeat line -->
+  <path d="M 50 100 L 75 100 L 85 85 L 95 115 L 105 95 L 115 105 L 150 100" 
+        stroke="#f59e0b" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Data points -->
+  <circle cx="70" cy="75" r="3" fill="#0ea5e9"/>
+  <circle cx="130" cy="70" r="3" fill="#10b981"/>
+  <circle cx="140" cy="130" r="3" fill="#e11d48"/>
+  <circle cx="60" cy="130" r="3" fill="#f59e0b"/>
+</svg>

@@ -781,12 +781,232 @@ export default function MigrationAnalysis() {
     fetchStates();
   }, []);
 
+  const [showIntro, setShowIntro] = useState(true);
+
   return (
     <div style={{ background: designTokens.colors.slate50, minHeight: '100vh', paddingBottom: designTokens.spacing.lg }}>
       <Container>
         <h1 style={{ color: designTokens.colors.slate800, marginBottom: designTokens.spacing.lg, fontSize: '28px', fontWeight: '700' }}>
           Migration Analysis
         </h1>
+
+        {/* INTRODUCTION SECTION */}
+        {showIntro && (
+          <Card style={{ background: '#ffffff', border: '1px solid #e5e7eb', marginBottom: '24px' }}>
+            <button
+              onClick={() => setShowIntro(false)}
+              style={{
+                position: 'absolute',
+                top: '20px',
+                right: '20px',
+                background: '#f1f5f9',
+                border: 'none',
+                color: '#64748b',
+                borderRadius: '4px',
+                width: '28px',
+                height: '28px',
+                cursor: 'pointer',
+                fontSize: '16px',
+                fontWeight: '400',
+                transition: 'all 0.2s'
+              }}
+              onMouseEnter={(e) => { e.target.style.background = '#e2e8f0'; e.target.style.color = '#334155'; }}
+              onMouseLeave={(e) => { e.target.style.background = '#f1f5f9'; e.target.style.color = '#64748b'; }}
+            >
+              ×
+            </button>
+            
+            <div style={{ maxWidth: '900px' }}>
+              <h2 style={{ fontSize: '22px', fontWeight: '600', margin: '0 0 20px 0', color: '#111827' }}>
+                Migration Index
+              </h2>
+              
+              <p style={{ fontSize: '15px', lineHeight: '1.7', margin: '0 0 28px 0', color: '#475569' }}>
+                The Migration Index quantifies population movement by analyzing Aadhaar enrolment and update patterns across geographic regions. 
+                It provides data-driven insights for resource allocation and capacity planning.
+              </p>
+
+              <div style={{ background: '#f8fafc', padding: '20px', borderRadius: '6px', border: '1px solid #e2e8f0', marginBottom: '28px' }}>
+                <h3 style={{ fontSize: '14px', fontWeight: '600', margin: '0 0 16px 0', color: '#334155', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                  Index Score Reference
+                </h3>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', fontSize: '14px', color: '#475569' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: '120px 1fr', alignItems: 'center', gap: '16px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      <div style={{ width: '32px', height: '20px', background: '#10b981', borderRadius: '2px' }}></div>
+                      <span style={{ fontWeight: '600' }}>0–1.0</span>
+                    </div>
+                    <div>Low migration activity, stable population</div>
+                  </div>
+                  
+                  <div style={{ display: 'grid', gridTemplateColumns: '120px 1fr', alignItems: 'center', gap: '16px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      <div style={{ width: '32px', height: '20px', background: '#eab308', borderRadius: '2px' }}></div>
+                      <span style={{ fontWeight: '600' }}>1.0–2.0</span>
+                    </div>
+                    <div>Moderate migration patterns</div>
+                  </div>
+                  
+                  <div style={{ display: 'grid', gridTemplateColumns: '120px 1fr', alignItems: 'center', gap: '16px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      <div style={{ width: '32px', height: '20px', background: '#f97316', borderRadius: '2px' }}></div>
+                      <span style={{ fontWeight: '600' }}>2.0–3.0</span>
+                    </div>
+                    <div>High migration, increased demand</div>
+                  </div>
+                  
+                  <div style={{ display: 'grid', gridTemplateColumns: '120px 1fr', alignItems: 'center', gap: '16px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      <div style={{ width: '32px', height: '20px', background: '#ef4444', borderRadius: '2px' }}></div>
+                      <span style={{ fontWeight: '600' }}>3.0+</span>
+                    </div>
+                    <div>Critical migration hotspot</div>
+                  </div>
+                </div>
+              </div>
+
+              <div style={{ marginBottom: '28px' }}>
+                <h3 style={{ fontSize: '14px', fontWeight: '600', margin: '0 0 12px 0', color: '#334155', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                  Calculation Methodology
+                </h3>
+                <p style={{ fontSize: '14px', lineHeight: '1.7', margin: '0 0 16px 0', color: '#475569' }}>
+                  The Migration Index is calculated using a weighted formula that combines child enrolments with adult updates:
+                </p>
+                <div style={{ background: '#ffffff', padding: '16px', borderRadius: '4px', border: '1px solid #e2e8f0', marginBottom: '16px' }}>
+                  <div style={{ fontFamily: 'monospace', fontSize: '13px', color: '#1e293b', lineHeight: '1.8' }}>
+                    <div style={{ marginBottom: '8px' }}>
+                      <strong>Migration Index = </strong>
+                    </div>
+                    <div style={{ paddingLeft: '20px' }}>
+                      (Child Enrolments × 2.0) + (Adult Updates × 1.0)
+                    </div>
+                    <div style={{ paddingLeft: '20px', marginBottom: '8px' }}>
+                      ────────────────────────────────────────
+                    </div>
+                    <div style={{ paddingLeft: '60px' }}>
+                      Total Population
+                    </div>
+                  </div>
+                </div>
+                <div style={{ fontSize: '13px', color: '#64748b', lineHeight: '1.6' }}>
+                  <div style={{ marginBottom: '6px' }}><strong style={{ color: '#475569' }}>Where:</strong></div>
+                  <div style={{ paddingLeft: '16px' }}>
+                    • <strong>Child Enrolments</strong>: New Aadhaar registrations (age &lt; 18)<br/>
+                    • <strong>Adult Updates</strong>: Biometric + demographic updates (age ≥ 18)<br/>
+                    • <strong>Weight 2.0</strong>: Child enrolments weighted higher as stronger migration indicator<br/>
+                    • <strong>Total Population</strong>: District/state population for normalization
+                  </div>
+                </div>
+                <p style={{ fontSize: '14px', lineHeight: '1.7', margin: '16px 0 0 0', color: '#475569' }}>
+                  Higher values indicate regions experiencing significant population influx or mobility, requiring additional service infrastructure.
+                </p>
+              </div>
+
+              <div style={{ borderTop: '1px solid #e2e8f0', paddingTop: '24px' }}>
+                <h3 style={{ fontSize: '14px', fontWeight: '600', margin: '0 0 16px 0', color: '#334155', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                  Analysis Capabilities
+                </h3>
+                
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '16px', marginBottom: '24px' }}>
+                  <div style={{ padding: '16px', border: '1px solid #e2e8f0', borderRadius: '6px' }}>
+                    <div style={{ fontSize: '14px', fontWeight: '600', marginBottom: '6px', color: '#111827' }}>Multi-Level Analysis</div>
+                    <div style={{ fontSize: '13px', color: '#64748b', lineHeight: '1.6' }}>
+                      State, district, and pincode granularity
+                    </div>
+                  </div>
+                  
+                  <div style={{ padding: '16px', border: '1px solid #e2e8f0', borderRadius: '6px' }}>
+                    <div style={{ fontSize: '14px', fontWeight: '600', marginBottom: '6px', color: '#111827' }}>ML Forecasting</div>
+                    <div style={{ fontSize: '13px', color: '#64748b', lineHeight: '1.6' }}>
+                      Prophet & ARIMA models, 7-180 day horizon
+                    </div>
+                  </div>
+                  
+                  <div style={{ padding: '16px', border: '1px solid #e2e8f0', borderRadius: '6px' }}>
+                    <div style={{ fontSize: '14px', fontWeight: '600', marginBottom: '6px', color: '#111827' }}>Trend Detection</div>
+                    <div style={{ fontSize: '13px', color: '#64748b', lineHeight: '1.6' }}>
+                      Historical patterns and anomaly identification
+                    </div>
+                  </div>
+                  
+                  <div style={{ padding: '16px', border: '1px solid #e2e8f0', borderRadius: '6px' }}>
+                    <div style={{ fontSize: '14px', fontWeight: '600', marginBottom: '6px', color: '#111827' }}>Regional Comparison</div>
+                    <div style={{ fontSize: '13px', color: '#64748b', lineHeight: '1.6' }}>
+                      Side-by-side index analysis
+                    </div>
+                  </div>
+                </div>
+
+                <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+                  <a href="/dashboard" style={{
+                    padding: '8px 16px',
+                    background: '#f8fafc',
+                    border: '1px solid #e2e8f0',
+                    borderRadius: '4px',
+                    textDecoration: 'none',
+                    color: '#475569',
+                    fontSize: '13px',
+                    fontWeight: '500',
+                    transition: 'all 0.2s'
+                  }}
+                  onMouseEnter={(e) => { e.target.style.background = '#f1f5f9'; e.target.style.borderColor = '#cbd5e1'; }}
+                  onMouseLeave={(e) => { e.target.style.background = '#f8fafc'; e.target.style.borderColor = '#e2e8f0'; }}
+                  >
+                    National Overview
+                  </a>
+                  <a href="/demand" style={{
+                    padding: '8px 16px',
+                    background: '#f8fafc',
+                    border: '1px solid #e2e8f0',
+                    borderRadius: '4px',
+                    textDecoration: 'none',
+                    color: '#475569',
+                    fontSize: '13px',
+                    fontWeight: '500',
+                    transition: 'all 0.2s'
+                  }}
+                  onMouseEnter={(e) => { e.target.style.background = '#f1f5f9'; e.target.style.borderColor = '#cbd5e1'; }}
+                  onMouseLeave={(e) => { e.target.style.background = '#f8fafc'; e.target.style.borderColor = '#e2e8f0'; }}
+                  >
+                    Capacity Planning
+                  </a>
+                  <a href="/insights" style={{
+                    padding: '8px 16px',
+                    background: '#f8fafc',
+                    border: '1px solid #e2e8f0',
+                    borderRadius: '4px',
+                    textDecoration: 'none',
+                    color: '#475569',
+                    fontSize: '13px',
+                    fontWeight: '500',
+                    transition: 'all 0.2s'
+                  }}
+                  onMouseEnter={(e) => { e.target.style.background = '#f1f5f9'; e.target.style.borderColor = '#cbd5e1'; }}
+                  onMouseLeave={(e) => { e.target.style.background = '#f8fafc'; e.target.style.borderColor = '#e2e8f0'; }}
+                  >
+                    Insights Engine
+                  </a>
+                  <a href="/map" style={{
+                    padding: '8px 16px',
+                    background: '#f8fafc',
+                    border: '1px solid #e2e8f0',
+                    borderRadius: '4px',
+                    textDecoration: 'none',
+                    color: '#475569',
+                    fontSize: '13px',
+                    fontWeight: '500',
+                    transition: 'all 0.2s'
+                  }}
+                  onMouseEnter={(e) => { e.target.style.background = '#f1f5f9'; e.target.style.borderColor = '#cbd5e1'; }}
+                  onMouseLeave={(e) => { e.target.style.background = '#f8fafc'; e.target.style.borderColor = '#e2e8f0'; }}
+                  >
+                    State Maps
+                  </a>
+                </div>
+              </div>
+            </div>
+          </Card>
+        )}
         
         {/* TAB NAVIGATION */}
         <div style={{

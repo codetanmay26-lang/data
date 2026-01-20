@@ -27,12 +27,12 @@ export default function Sidebar({ setSidebarWidth }) {
 
   const navConfig = [
     { to: "/", label: "Home", Icon: Home },
-    { to: "/dashboard", label: "Dashboard", Icon: LayoutDashboard },
-    { to: "/map", label: "Data Visualisation", Icon: Map },
-    { to: "/demand", label: "Demand Analysis", Icon: TrendingUp },
-    { to: "/insights", label: "National Insights", Icon: BarChart3 }, // 👈 NEW ENTRY
-    { to: "/migration", label: "Migration Index", Icon: Activity },
+    { to: "/dashboard", label: "National Overview", Icon: LayoutDashboard },
+    { to: "/map", label: "Map", Icon: Map },
     { to: "/data-cleaning", label: "Data Cleaning", Icon: Filter },
+    { to: "/demand", label: "Centre Capacity Planning", Icon: TrendingUp },
+    { to: "/insights", label: "National Insights", Icon: BarChart3 },
+    { to: "/migration", label: "Migration Index", Icon: Activity },
   ];
 
   return (
